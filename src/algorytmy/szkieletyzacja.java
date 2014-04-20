@@ -342,16 +342,17 @@ public class szkieletyzacja {
          
         do{
             
-
+            zmiany = false;
+            out = RGB.powiekszKopiujac(outtmp,0);
             for (int i = 1; i < width-1; i++) {
                 for (int j = 1; j < heigth-1; j++) {
-                    if(RGB.getR(in.getRGB(i, j))==0){
+                    if(RGB.getR(out.getRGB(i, j))==0){
                         //krok 1
                         //tworzenie dwuwymiarowej tablicy wartosci koloru sasiadow o wielkosc rozmiarMaski x rozmiarMaski
                         //maska binarna 1 - czarny   0 - bialy
                         for(int q=0;q<rozmiarMaski;q++){
                              for(int w=0;w<rozmiarMaski;w++){
-                               a[q][w] = RGB.binar(RGB.getR(in.getRGB(i-rozmiarMaski/2+q,j-rozmiarMaski/2+w)));  
+                               a[q][w] = RGB.binar(RGB.getR(out.getRGB(i-rozmiarMaski/2+q,j-rozmiarMaski/2+w)));  
                              }
                         }
 
@@ -363,14 +364,14 @@ public class szkieletyzacja {
                     }    
                 }            
             }
-
+    out = RGB.powiekszKopiujac(outtmp,0);
              for (int i = 1; i < width-1; i++) {
                 for (int j = 1; j < heigth-1; j++) {
-                    if(RGB.getG(outtmp.getRGB(i, j))==0){
+                    if(RGB.getG(out.getRGB(i, j))==0){
 
                         for(int q=0;q<rozmiarMaski;q++){
                              for(int w=0;w<rozmiarMaski;w++){
-                               a[q][w] = RGB.binar(RGB.getR(outtmp.getRGB(i-rozmiarMaski/2+q,j-rozmiarMaski/2+w)));  
+                               a[q][w] = RGB.binar(RGB.getR(out.getRGB(i-rozmiarMaski/2+q,j-rozmiarMaski/2+w)));  
                              }
                         }
 
@@ -383,11 +384,11 @@ public class szkieletyzacja {
                 }            
             }
 
-
+            out = RGB.powiekszKopiujac(outtmp,0);
             for (int i = 1; i < width-1; i++) {
                 for (int j = 1; j < heigth-1; j++) {
                     // Wszystkie zielone piksele
-                    if(RGB.getR(outtmp.getRGB(i, j))==0 && RGB.getG(outtmp.getRGB(i, j))==255 && RGB.getB(outtmp.getRGB(i, j))==0){
+                    if(RGB.getR(out.getRGB(i, j))==0 && RGB.getG(out.getRGB(i, j))==255 && RGB.getB(out.getRGB(i, j))==0){
                         waga = 0;
                         for(int q=0;q<rozmiarMaski;q++){
                              for(int w=0;w<rozmiarMaski;w++){
@@ -408,7 +409,10 @@ public class szkieletyzacja {
                     }    
                 }            
             }
-
+            
+            
+            
+            out=RGB.powiekszKopiujac(outtmp,0);
             for(int color = 0;color<3;color++){
             //Usuwanie 4czerwone 2zielone 3niebieskie
                 r=0;g=0;b=0;
@@ -419,7 +423,7 @@ public class szkieletyzacja {
                 for (int i = 1; i < width-1; i++) {
                     for (int j = 1; j < heigth-1; j++) {
                         // Wszystkie kolorowe piksele
-                        if(RGB.getR(outtmp.getRGB(i, j))==r && RGB.getG(outtmp.getRGB(i, j))==g && RGB.getB(outtmp.getRGB(i, j))==b){
+                        if(RGB.getR(out.getRGB(i, j))==r && RGB.getG(out.getRGB(i, j))==g && RGB.getB(out.getRGB(i, j))==b){
                             waga = 0;
                             for(int q=0;q<rozmiarMaski;q++){
                                  for(int w=0;w<rozmiarMaski;w++){
@@ -436,10 +440,11 @@ public class szkieletyzacja {
                                 if(waga==x){
                                     outtmp.setRGB(i, j,bialy);
                                     outbin.setRGB(i, j,bialy);
-                                    //zmiany=true;
+                                    straznik++;
+                                    zmiany=true;
                                 }
-                                else
-                                    outtmp.setRGB(i, j,czarny);
+                                
+                               
                             }
 
 
@@ -447,12 +452,12 @@ public class szkieletyzacja {
                     }            
                 }
             }
-        //cos zle pewnie praca na zlym obazku
-        in = RGB.powiekszKopiujac(outtmp,0);
+            
         }while(zmiany==true);
         long end_time = System.currentTimeMillis();
         System.out.println("Wykonanie w : "+(end_time-start_time)+"ms");
-        return outtmp;
+        
+        return outbin;
     }
     
 }
