@@ -410,8 +410,6 @@ public class szkieletyzacja {
                 }            
             }
             
-            
-            
             out=RGB.powiekszKopiujac(outtmp,0);
             for(int color = 0;color<3;color++){
             //Usuwanie 4czerwone 2zielone 3niebieskie
