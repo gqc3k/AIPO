@@ -436,7 +436,7 @@ public class szkieletyzacja {
                                 if(waga==x){
                                     outtmp.setRGB(i, j,bialy);
                                     outbin.setRGB(i, j,bialy);
-                                    zmiany=true;
+                                    //zmiany=true;
                                 }
                                 else
                                     outtmp.setRGB(i, j,czarny);
