@@ -93,7 +93,7 @@ public class runFile {
         "Progowanie przez średnią lokalną z sąsiedztwem szerokości  i odchyleniem od średniej globalnej","Filtr splotowy",
         "Zmiana jasności","Krzyż Robertsa","Filtr Sobela","Obrót","Szum typu sól i pieprz","Szum Rónomierny",
         "Odszumianie : filtr za pomocą średniej","Odszumianie : filtr medianowy","Odszumianie:Uleszony filtr medianowy","Scienianie K3M","Scienianie KMM","Scienianie przez maske",
-        "Fragmentacja liter metoda 1","Fragmentacja liter metoda 2"
+        "Fragmentacja liter metoda"
     };
     
     private BufferedImage out;
@@ -263,12 +263,7 @@ public class runFile {
                     //ImageIO.write(out,"jpg",new File("out/jasnosc.jpg"));
                     System.out.println("Szkieletyzacja liter metoda pierwsza gotowe!");
                 };
-                    break;
-                case 25:{//szkieletyzacja liter 2
-                    out = szkieletyzacjaLiter.szkieletyzacja2(in);
-                    //ImageIO.write(out,"jpg",new File("out/jasnosc.jpg"));
-                    System.out.println("Szkieletyzacja liter metoda druga gotowe!!");
-                };    
+               
                 /** New function add here with case STRING : {} 
                  * 
                  * 

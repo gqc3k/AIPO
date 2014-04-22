@@ -34,12 +34,15 @@ public class szkieletyzacjaLiter {
         List<BufferedImage> listaWierszy = new ArrayList<>();
         List<BufferedImage> listaLiter = new ArrayList<>();
         HashMap<String,ArrayList<Integer>> czarneWiersze = new HashMap<>();
+        BufferedImage asd ;
         
-        listaWierszy = wydobycieElementow(in,1);
-        return listaWierszy.get(0);
+        
+        
+        asd = wydobycieLiter(in);
+        return asd;
     }
-    /*
-    public static List<BufferedImage> wydobycieElementow ( BufferedImage in,int dim){
+    
+    public static List<BufferedImage> wydobycieWierszy ( BufferedImage in){
      
         BufferedImage outtmp    = new BufferedImage( in.getWidth(), in.getHeight(), in.getType());
         BufferedImage out       = new BufferedImage( in.getWidth(), in.getHeight(), in.getType());
@@ -62,7 +65,7 @@ public class szkieletyzacjaLiter {
          * i do listy dodajemy wartosc tego wiersza pozostale wiersze
          * wypelniamy na zolto
          */
-        /*
+        
         HashMap<Integer,ArrayList<Integer>> czarneWiersze = new HashMap<>();
         List<Integer> czarne = new ArrayList<>();
         List<BufferedImage> wierszeObrazy = new ArrayList<>();
@@ -121,9 +124,9 @@ public class szkieletyzacjaLiter {
         
         return wierszeObrazy;
     }
-    */
+    
 
-    public static List<BufferedImage> wydobycieElementow ( BufferedImage in,int dim){
+    public static BufferedImage wydobycieLiter ( BufferedImage in){
      
         BufferedImage outtmp    = new BufferedImage( in.getWidth(), in.getHeight(), in.getType());
         BufferedImage out       = new BufferedImage( in.getWidth(), in.getHeight(), in.getType());
@@ -148,9 +151,8 @@ public class szkieletyzacjaLiter {
          */
         
         HashMap<Integer,ArrayList<Integer>> czarneWiersze = new HashMap<>();
-        List<Integer> czarne                = new ArrayList<>();    
-        List<BufferedImage> wierszeObrazy   = new ArrayList<>();
-
+        List<Integer> czarne                = new ArrayList<>();
+        List<List<Integer>> odcinki         = new ArrayList<>();
         //wiersze ktore posiadaja czarne piksele
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < heigth; j++) {    
@@ -160,6 +162,7 @@ public class szkieletyzacjaLiter {
                 }  
             }
         }
+      
         //wypelnianie pozostalych wierszy
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < heigth; j++) {    
@@ -168,61 +171,53 @@ public class szkieletyzacjaLiter {
             }
         }
         czarne.sort(null);
+        //znacznik konca listy dodana wartosc wieksza o 2 od ostatniego wyrazu
+        //zeby poprawnie przeszla petla i zauwazyla roznice w celu zazanczenia kolumny
+        czarne.add(czarne.get(czarne.size()-1)+2);
         
-        int first,previous,current,count,max;
+        int first,previous,current,count,max,roznica;
         first       = czarne.get(0);
         previous    = czarne.get(0);
         max         = heigth;
         count       = 0;
         
         for(int k:czarne){
-            current = k;    
-            if(current-previous>1){
-               
-                for (int j = first; j <previous+1; j++) {
-                    for (int i = 0; i <heigth; i++) {
-                        if(RGB.getB(out.getRGB(j, i))!=0){
-                            count=i;
-                            if(count<max)
-                                max = count;
-                            
-                        }                           
-                    }
+            current = k;
+            roznica = current - previous;
+            if(roznica>1){
+                List<Integer> tempList = new ArrayList<>();
+                for (int i = first; i <= previous; i++) {
+                    tempList.add(i);
                 }
-                for (int i = 0; i <10; i++) {
-                    for (int j = first; j <previous; j++) {
-                        out.setRGB(j, i, czerwony);   
-                    }
-                }
-             max = out.getHeight();
-             first=current;
+                odcinki.add(tempList);
+                first=current;
             }
-            previous=current;
+            previous = current;
         }
         
-        wierszeObrazy.add(out);
-        
-        try {
-            for (int i = 0; i < wierszeObrazy.size(); i++) {
-                ImageIO.write(wierszeObrazy.get(i),"jpg",new File("out/wiersz"+(i+1)+".jpg"));
+        //sprawdzanie kazdego odcinka
+        boolean zawieraCzarne = false;
+        for(List l:odcinki){
+            for (int j = 0; j <heigth; j++) {
+            zawieraCzarne=false;
+                    
+                    for (int i = 0; i < l.size(); i++) {
+                        int w = (int)l.get(i);
+                        if(RGB.getB(out.getRGB(w,j))==0)
+                            zawieraCzarne=true;
+                    }
+                    
+                    if(zawieraCzarne==false){
+                        for (int i = 0; i < l.size(); i++) {
+                            int w = (int)l.get(i);
+                            out.setRGB(w,j,czerwony);
+                        }
+                    }
             }
-        } catch (Exception e) {
-            e.getMessage();
         }
-        
-        return wierszeObrazy;
-    }
-    
-    public static BufferedImage szkieletyzacja2 ( BufferedImage in){
-    
-        BufferedImage out=new BufferedImage( in.getWidth(), in.getHeight(), in.getType());
-        out  = RGB.powiekszKopiujac(in,0);
-        int width;
-        int heigth;
-        width=in.getWidth();
-        heigth=in.getHeight();
         
         return out;
     }
+    
  }
 
