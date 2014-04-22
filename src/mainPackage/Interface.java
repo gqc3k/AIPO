@@ -30,7 +30,7 @@ public class Interface extends javax.swing.JFrame {
     public Interface() {
         initComponents();
         lab             = new runFile();
-        this.scale      = 20;
+        this.scale      = 30;
         this.operacje   = this.lab.getOperations();
         for(String s:operacje)
         this.jComboBox1.addItem(s);

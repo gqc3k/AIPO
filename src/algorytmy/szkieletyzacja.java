@@ -100,8 +100,8 @@ public class szkieletyzacja {
      
         BufferedImage out=new BufferedImage( in.getWidth(), in.getHeight(), in.getType());
         BufferedImage out1;//=RGB.powiekszBialymi(in, 1);
-        out  = in;
-        out1 = out;
+        out  = RGB.powiekszKopiujac(in,0);
+        out1 = RGB.powiekszKopiujac(out,0);
         int width;
         int heigth;
         width=in.getWidth();

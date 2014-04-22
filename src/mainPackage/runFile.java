@@ -4,10 +4,12 @@ import algorytmy.krawedziowe;
 import algorytmy.odszumianie;
 import algorytmy.podstawoweOperacje;
 import algorytmy.szkieletyzacja;
-import java.awt.image.BufferedImage;
+import algorytmy.szkieletyzacjaLiter;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +92,8 @@ public class runFile {
         "Skalowanie 0.4, a potem 2.5 gotowe","Progowanie przez średnią globalną","Progowanie przez średnią lokalną z sąsiedztwem szerokości",
         "Progowanie przez średnią lokalną z sąsiedztwem szerokości  i odchyleniem od średniej globalnej","Filtr splotowy",
         "Zmiana jasności","Krzyż Robertsa","Filtr Sobela","Obrót","Szum typu sól i pieprz","Szum Rónomierny",
-        "Odszumianie : filtr za pomocą średniej","Odszumianie : filtr medianowy","Odszumianie:Uleszony filtr medianowy","Scienianie K3M","Scienianie KMM","Scienianie przez maske"
+        "Odszumianie : filtr za pomocą średniej","Odszumianie : filtr medianowy","Odszumianie:Uleszony filtr medianowy","Scienianie K3M","Scienianie KMM","Scienianie przez maske",
+        "Fragmentacja liter metoda 1","Fragmentacja liter metoda 2"
     };
     
     private BufferedImage out;
@@ -252,9 +255,20 @@ public class runFile {
                 case 23:{//scienianie przez maske
                     out = szkieletyzacja.Maska(in);
                     //ImageIO.write(out,"jpg",new File("out/jasnosc.jpg"));
-                    System.out.println("Algorytm KMM gotowy!");
+                    System.out.println("Algorytm Szkieletyzacji przez maske gotowy!");
                 };
-                    
+                    break;
+                case 24:{//szkieletyzacja liter 1
+                    out = szkieletyzacjaLiter.szkieletyzacja1(in);
+                    //ImageIO.write(out,"jpg",new File("out/jasnosc.jpg"));
+                    System.out.println("Szkieletyzacja liter metoda pierwsza gotowe!");
+                };
+                    break;
+                case 25:{//szkieletyzacja liter 2
+                    out = szkieletyzacjaLiter.szkieletyzacja2(in);
+                    //ImageIO.write(out,"jpg",new File("out/jasnosc.jpg"));
+                    System.out.println("Szkieletyzacja liter metoda druga gotowe!!");
+                };    
                 /** New function add here with case STRING : {} 
                  * 
                  * 
@@ -266,12 +280,5 @@ public class runFile {
         }
         
     }
-    
-    public static class test{
-             public static void testowa(){
-                    System.out.println("Testowa statyczna ze szkieletyzacji");
-                }
-        }
-    
         
 }
