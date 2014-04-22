@@ -34,12 +34,49 @@ public class szkieletyzacjaLiter {
         List<BufferedImage> listaWierszy = new ArrayList<>();
         List<BufferedImage> listaLiter = new ArrayList<>();
         HashMap<String,ArrayList<Integer>> czarneWiersze = new HashMap<>();
-        BufferedImage asd ;
+        BufferedImage out ;
+        
+        listaWierszy = wydobycieWierszy(in);
+        
+            for(BufferedImage l:listaWierszy){
+                listaLiter.add(wydobycieLiter(l));
+            }
+        
+        out = joiner(listaLiter);
+        return out;
+    }
+    
+    public static  BufferedImage joiner (List<BufferedImage> in){
+     BufferedImage out;
+        int width           = 0;
+        int height          = 0;   
+        int startHeight     = 0;
+        int endHeight       = 0;
+        
+        for(BufferedImage im:in){
+            width   = im.getWidth();
+            height  +=im.getHeight();
+        }
+        
+        out = new BufferedImage(width,height,in.get(0).getType());
+        
+        startHeight = 0;
+        endHeight   = 0;
+        
+        for(BufferedImage im:in){
+            endHeight+=im.getHeight();
+            
+            for (int i = 0; i < width; i++) {
+                for (int j = startHeight,k=0; j <endHeight; j++,k++) {
+                    out.setRGB(i, j,im.getRGB(i, k));
+                }    
+            }
+            
+            startHeight+=im.getHeight();    
+        }
         
         
-        
-        asd = wydobycieLiter(in);
-        return asd;
+     return out;
     }
     
     public static List<BufferedImage> wydobycieWierszy ( BufferedImage in){
