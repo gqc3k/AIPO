@@ -4,7 +4,7 @@ import algorytmy.krawedziowe;
 import algorytmy.odszumianie;
 import algorytmy.podstawoweOperacje;
 import algorytmy.szkieletyzacja;
-import algorytmy.szkieletyzacjaLiter;
+import algorytmy.segmentacjaLiter;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -259,17 +259,16 @@ public class runFile {
                 };
                     break;
                 case 24:{//szkieletyzacja liter 1
-                    out = szkieletyzacjaLiter.szkieletyzacja1(in);
+                    out = segmentacjaLiter.szkieletyzacja1(in);
                     //ImageIO.write(out,"jpg",new File("out/jasnosc.jpg"));
                     System.out.println("Szkieletyzacja liter metoda pierwsza gotowe!");
-                };
-               
                 /** New function add here with case STRING : {} 
                  * 
                  * 
                  */
                 
              }
+            }
         } catch(IOException e) {
             System.out.println("W module Lab01 padło: " + e.toString());
         }
