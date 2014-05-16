@@ -20,12 +20,12 @@ import mainPackage.RGB;
  */
 public class segmentacjaLiter {
 
-    private static final int czarny = Color.BLACK.getRGB();
-    private static final int bialy = Color.WHITE.getRGB();
-    private static final int czerwony = Color.RED.getRGB();
-    private static final int zielony = Color.GREEN.getRGB();
-    private static final int niebieski = Color.BLUE.getRGB();
-    private static final int zolty = Color.YELLOW.getRGB();
+    private static final int czarny     = Color.BLACK.getRGB();
+    private static final int bialy      = Color.WHITE.getRGB();
+    private static final int czerwony   = Color.RED.getRGB();
+    private static final int zielony    = Color.GREEN.getRGB();
+    private static final int niebieski  = Color.BLUE.getRGB();
+    private static final int zolty      = Color.YELLOW.getRGB();
     private int licznikLiter;
     private int licznikWierszy;
 
@@ -91,7 +91,6 @@ public class segmentacjaLiter {
         heigth = in.getHeight();
 
         int waga = 0;
-
         int r, g, b;
         int straznik = 0;
 

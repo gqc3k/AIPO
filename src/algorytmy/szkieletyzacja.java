@@ -104,9 +104,9 @@ public class szkieletyzacja {
         out1 = RGB.powiekszKopiujac(out,0);
         int width;
         int heigth;
-        width=in.getWidth();
-        heigth=in.getHeight();
-        int waga=0;
+        width   = in.getWidth();
+        heigth  = in.getHeight();
+        int waga= 0;
          
          
         boolean zmiany;
@@ -150,7 +150,6 @@ public class szkieletyzacja {
             for(int licz=1;licz<6;licz++) {
                 for (int i=3; i< width-3; i++){
                     for ( int j=3; j< heigth-3; j++){
-                        // tu uzupełnij kod
                         waga=0;
                      
                         if((RGB.getR(out.getRGB(i, j)))==255 && (RGB.getB(out.getRGB(i, j)))==0){
@@ -184,7 +183,6 @@ public class szkieletyzacja {
             //zamiana pozostałych czerwonych pikseli na czarne
             for (int i=1; i<width-2 ;i++){
                 for ( int j=1; j< heigth-2; j++){
-             //tu uzupełnij kod
              // wartosc red  = 255 ale pozostale piksela musza byc 0 , dla bialego wszystkie 255 wiec red rowniez
              // to ze red = 255 niewystarczajace bo wszystkie biale rowniez beda sie kwalifikowaly
                     if(RGB.getR(out.getRGB(i, j))==255 && RGB.getG(out.getRGB(i, j))==0){
