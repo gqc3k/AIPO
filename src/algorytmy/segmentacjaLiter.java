@@ -16,7 +16,7 @@ import mainPackage.RGB;
 
 /**
  *
- * @author i9gaca
+ * @author Robert Gaca
  */
 public class segmentacjaLiter {
 
