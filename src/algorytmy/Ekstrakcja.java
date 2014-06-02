@@ -6,10 +6,17 @@
 
 package algorytmy;
 
+import java.awt.image.BufferedImage;
+
+
 /**
  *
  * @author Greko
  */
 public class Ekstrakcja {
+    
+    public static void zbiortestow(BufferedImage in){
+    
+    }
     
 }
