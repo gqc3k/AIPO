@@ -6,17 +6,15 @@
 
 package ekstrakcjacech;
 
-import java.awt.image.BufferedImage;
+import algorytmy.helpers;
+import algorytmy.podstawoweOperacje;
+import algorytmy.segmentacjaLiter;
 import algorytmy.szkieletyzacja;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import mainPackage.RGB;
-import algorytmy.podstawoweOperacje;
-import algorytmy.podstawoweOperacje;
-import algorytmy.segmentacjaLiter;
-import algorytmy.segmentacjaLiter;
-import algorytmy.szkieletyzacja;
 
 /**
  *
@@ -70,34 +68,34 @@ public class ekstrakcja {
         
         
         
-//        for(int i=2;i<width-2;i++){
-//            for (int j = 2; j < height-2; j++) {
-//                if(RGB.getB(out.getRGB(i, j))==0){
-//                    maska = RGB.zwrocMaske(rozmiarMaski,out,i,j);
-//                    
-//                    sumaSasiadow = 0;
-//                    
-//                    for(int[] x : maska){
-//                        for(int y:x){
-//                            if(RGB.getR(y)==0){
-//                                sumaSasiadow++;
-//                            }
-//                        }
-//                    }
-//                    
-//                    //3 zamiast 2 zeby uproscic kod - licze razem z pikselem
-//                    //ktory aktualnie analizuje
-//                    if(sumaSasiadow>3 || sumaSasiadow<3)
-//                    {
-//                        outtmp.setRGB(i, j, czarny);
-//                        mapa.put(i,j);
-//                    }
-//                    
-//                    
-//                }
-//                
-//            }
-//        }
+        for(int i=2;i<width-2;i++){
+            for (int j = 2; j < height-2; j++) {
+                if(RGB.getB(out.getRGB(i, j))==0){
+                    maska = helpers.zwrocMaske(rozmiarMaski,out,i,j);
+                    
+                    sumaSasiadow = 0;
+                    
+                    for(int[] x : maska){
+                        for(int y:x){
+                            if(RGB.getR(y)==0){
+                                sumaSasiadow++;
+                            }
+                        }
+                    }
+                    
+                    //3 zamiast 2 zeby uproscic kod - licze razem z pikselem
+                    //ktory aktualnie analizuje
+                    if(sumaSasiadow>3 || sumaSasiadow<3)
+                    {
+                        outtmp.setRGB(i, j, czarny);
+                        mapa.put(i,j);
+                    }
+                    
+                    
+                }
+                
+            }
+        }
         
         
         

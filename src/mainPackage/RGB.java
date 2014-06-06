@@ -112,33 +112,5 @@ public class RGB {
         return w==0 ? 1 : 0;
     }
     
-    /**
-     * 
-     * @param rozmiarMaski rozmiar zwracanej maski
-     * @param in obraz wejsciowy
-     * @param x polozenie x
-     * @param y polozenie y
-     * @return 
-     */
-    public static int[][] zwrocMaske(int rozmiarMaski, BufferedImage in,int x,int y){
-        
-        int width,height;
-        width   = in.getWidth();
-        height  = in.getHeight();
-        
-        int [][] maska = new int[rozmiarMaski][rozmiarMaski];
-        
-      
-                    //////////////////////////////////
-                    for(int q=0;q<rozmiarMaski;q++){
-                             for(int w=0;w<rozmiarMaski;w++){
-                               maska[q][w] =in.getRGB(x-rozmiarMaski/2+q,y-rozmiarMaski/2+w);  
-                             }
-                        }
-                    //////////////////////////////////
-           
-        
-        return maska;
-        
-    }
+
 }
