@@ -1,10 +1,11 @@
 package mainPackage;
 
+import algorytmy.ekstrakcja;
 import algorytmy.krawedziowe;
 import algorytmy.odszumianie;
 import algorytmy.podstawoweOperacje;
-import algorytmy.szkieletyzacja;
 import algorytmy.segmentacjaLiter;
+import algorytmy.szkieletyzacja;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -93,7 +94,7 @@ public class runFile {
         "Progowanie przez średnią lokalną z sąsiedztwem szerokości  i odchyleniem od średniej globalnej","Filtr splotowy",
         "Zmiana jasności","Krzyż Robertsa","Filtr Sobela","Obrót","Szum typu sól i pieprz","Szum Rónomierny",
         "Odszumianie : filtr za pomocą średniej","Odszumianie : filtr medianowy","Odszumianie:Uleszony filtr medianowy","Scienianie K3M","Scienianie KMM","Scienianie przez maske",
-        "Fragmentacja liter metoda"
+        "Fragmentacja liter","Testowa"
     };
     
     private BufferedImage out;
@@ -262,12 +263,20 @@ public class runFile {
                     out = segmentacjaLiter.szkieletyzacja1(in);
                     //ImageIO.write(out,"jpg",new File("out/jasnosc.jpg"));
                     System.out.println("Szkieletyzacja liter metoda pierwsza gotowe!");
+                    }
+                    break;
+                    
+                case 25:{//funkcja testowa - OCR 
+                    out = ekstrakcja.cechyMetoda1(in);
+                    //ImageIO.write(out,"jpg",new File("out/jasnosc.jpg"));
+                    System.out.println("Szkieletyzacja liter metoda pierwsza gotowe!");
+                }
                 /** New function add here with case STRING : {} 
                  * 
                  * 
                  */
                 
-             }
+             
             }
         } catch(IOException e) {
             System.out.println("W module Lab01 padło: " + e.toString());

@@ -20,7 +20,7 @@ public class Main {
             inter.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             inter.setResizable(true);
             inter.setBackground(Color.CYAN);
-            inter.setSize(800,500);
+            inter.setSize(800,600);
             inter.setVisible(true);
         
     }

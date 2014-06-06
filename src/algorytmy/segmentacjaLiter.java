@@ -7,6 +7,7 @@ package algorytmy;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import static java.lang.System.in;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -254,6 +255,72 @@ public class segmentacjaLiter {
         }
 
         return out;
+    }
+    
+    
+    public static BufferedImage wycinanieLitery(BufferedImage in){
+        
+    BufferedImage out ;
+    
+    int up=0,down=0,left=0,right=0;
+    
+    //UP
+    outloop:for (int i = 0; i < in.getWidth(); i++) {
+                for (int j = 0; j < in.getHeight(); j++) {
+                    if(RGB.getR(in.getRGB(i, j))==0 && RGB.getG(in.getRGB(i, j))==0 && RGB.getB(in.getRGB(i, j))==0){
+                        up = i;
+                        break outloop;
+                    }
+                }
+        }
+    
+    //Down
+    outloop:for (int i = 0; i < in.getWidth(); i++) {
+                for (int j = in.getHeight()-1; j >=0 ; j--) {
+                    if(RGB.getR(in.getRGB(i, j))==0 && RGB.getG(in.getRGB(i, j))==0 && RGB.getB(in.getRGB(i, j))==0){
+                        down = i;
+                        break outloop;
+                    }
+                }
+        }
+    
+    //Left
+    outloop:for (int j = 0; j < in.getHeight(); j++) {
+                for (int i = 0; i < in.getWidth(); i++) {
+                    if(RGB.getR(in.getRGB(i, j))==0 && RGB.getG(in.getRGB(i, j))==0 && RGB.getB(in.getRGB(i, j))==0){
+                        left = j;
+                        break outloop;
+                    }
+                }
+        }
+        
+    //Right
+    outloop:for (int j = 0; j < in.getHeight(); j++) {
+                for (int i = in.getWidth()-1; i >0; i--) {
+                    if(RGB.getR(in.getRGB(i, j))==0 && RGB.getG(in.getRGB(i, j))==0 && RGB.getB(in.getRGB(i, j))==0){
+                        right = j;
+                        break outloop;
+                    }
+                }
+        }
+    
+        System.out.println("Left "+left+"  right "+right+"  up "+up+"  down  "+down);
+    
+    int newwidth,newheight;
+    
+    newwidth    = in.getWidth()-left-(in.getWidth()-right-1);
+    newheight   = in.getHeight()-up-(in.getHeight()-down-1);
+    
+    
+    out = new BufferedImage(newwidth,newheight,in.getType());
+   
+        for (int i = left,k=0; i <=right; i++,k++) {
+            for (int j = up,l=0; j <=down; j++,l++) {
+                out.setRGB(k, l, in.getRGB(i, j));
+            }
+        }
+    
+    return out;
     }
 
 }
