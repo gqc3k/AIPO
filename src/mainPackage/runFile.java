@@ -1,6 +1,6 @@
 package mainPackage;
 
-import algorytmy.ekstrakcja;
+import ekstrakcjacech.ekstrakcja;
 import algorytmy.krawedziowe;
 import algorytmy.odszumianie;
 import algorytmy.podstawoweOperacje;
