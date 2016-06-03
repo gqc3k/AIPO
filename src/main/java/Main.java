@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package mainPackage;
+import mainPackage.Interface;
 
 import java.awt.Color;
 import javax.swing.WindowConstants;
